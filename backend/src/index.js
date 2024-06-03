@@ -22,6 +22,7 @@ const corsOptions = {
   origin: 'https://postify-web-app-frontend.vercel.app',
 };
 
+app.set('trust proxy', true);
 app.use(cors(corsOptions));
 
 app.use(express.json());
