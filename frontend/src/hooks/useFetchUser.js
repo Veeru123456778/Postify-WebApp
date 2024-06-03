@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import axios from "axios";
+import UserContext from "../context/userContext";
 
 const useFetchUser = (token, setUser) => {
   const [loading, setLoading] = useState(true);
+  const { backend_url } = useContext(UserContext);
 
   useEffect(() => {
     const fetchUser = async () => {
       if (token) {
         try {
           const res = await axios.get(
-            "http://localhost:3000/api/user/userInfo",
+            `${backend_url}/api/user/userInfo`,
             {
               headers: { token },
             }
