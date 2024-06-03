@@ -4,7 +4,7 @@ import UserContext from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const { token, setToken } = useContext(UserContext);
+  const { token, setToken,backend_url } = useContext(UserContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -15,7 +15,7 @@ const Signup = () => {
     profilePicture: null,
   });
 
-  const url = "http://localhost:3000/api/user/signup";
+  const url = `${backend_url}/api/user/signup`;
   const [errors, setErrors] = useState({
     passwordMatch: true,
   });
