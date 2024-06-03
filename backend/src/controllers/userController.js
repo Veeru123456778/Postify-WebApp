@@ -38,7 +38,7 @@ const register_user = async (req, res) => {
     const { email, password, name } = req.body;
     const profilePicture = req.file ? req.file.path : null;
 
-    const absoluteFilePath = null;
+    let absoluteFilePath = null;
     if(profilePicture){
      absoluteFilePath = path.resolve(profilePicture);
     }
