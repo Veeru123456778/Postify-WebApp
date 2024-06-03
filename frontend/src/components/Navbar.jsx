@@ -16,6 +16,7 @@ const Navbar = () => {
     localStorage.removeItem("token");
     setToken("");
     setUser(null);
+    navigate('/signin');
     window.location.reload();
   }
   };
