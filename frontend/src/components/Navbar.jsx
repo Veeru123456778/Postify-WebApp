@@ -17,7 +17,6 @@ const Navbar = () => {
     setToken("");
     setUser(null);
     navigate('/signin');
-    window.location.reload();
   }
   };
 
