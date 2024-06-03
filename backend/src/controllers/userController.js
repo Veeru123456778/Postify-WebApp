@@ -38,7 +38,10 @@ const register_user = async (req, res) => {
     const { email, password, name } = req.body;
     const profilePicture = req.file ? req.file.path : null;
 
-    const absoluteFilePath = path.resolve(profilePicture);
+    const absoluteFilePath = null;
+    if(profilePicture){
+     absoluteFilePath = path.resolve(profilePicture);
+    }
 
     try {
         // Validate email
