@@ -5,7 +5,7 @@ import UserContext from "../context/userContext";
 import PasswordInput from "./PasswordInput";
 
 const Signin = () => {
-  const { setToken } = useContext(UserContext);
+  const { setToken, backend_url } = useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     email: "",
@@ -17,7 +17,7 @@ const Signin = () => {
   const handleSignUp = () => {
     navigate("/signup");
   };
-  const url = "http://localhost:3000/api/user/signin";
+  const url = `${backend_url}/api/user/signin`;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
