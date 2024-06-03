@@ -29,5 +29,4 @@ const uploadOnCloud = async (absoluteFilePath) => {
 
 export { uploadOnCloud };
 
-Utils/cloudinary.js
 
