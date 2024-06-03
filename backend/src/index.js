@@ -29,6 +29,8 @@ app.use(express.static("public/temp"));
 app.use(limiter);
 
 app.use("/api/user", userRouter);
+app.options('/api/user/signup', cors());
+
 
 connectDB();
 
