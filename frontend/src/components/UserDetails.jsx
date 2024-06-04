@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 
 const UserDetails = ({ user, handleLogOut, handleProfile }) => (
   <ul className="flex items-center gap-2 sm:gap-3 md:gap-5 lg:gap-5">

@@ -18,18 +18,16 @@ const limiter = rateLimit({
   message: "Too many requests, please try again later.",
 });
 
-const corsOptions = {
-  origin: 'https://postify-web-app-frontend.vercel.app' || '*',
-};
 
-app.use(cors(corsOptions));
+app.use(
+	cors()
+)
 
 app.use(express.json());
 app.use(express.static("public"));
 app.use(limiter);
 
 app.use("/api/user", userRouter);
-app.options('/api/user/signup', cors());
 
 
 connectDB();

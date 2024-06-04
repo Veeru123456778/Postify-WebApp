@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
-import axios from "axios";
+import  { useContext, useState } from "react";
 import UserContext from "../context/userContext";
 import { useNavigate } from "react-router-dom";
+import ApiConnector from "./ApiConnector";
 
 const Signup = () => {
-  const { token, setToken,backend_url } = useContext(UserContext);
+  const {setToken,backend_url } = useContext(UserContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -47,17 +47,22 @@ const Signup = () => {
       data.append(key, formData[key]);
     });
 
-    const res = await axios.post(url, data, {
-      headers: {
+    try {
+      const res = await ApiConnector("POST",url,data,
+      {
         "Content-Type": "multipart/form-data",
-      },
-    });
+      }
+    );
 
     if (res.data.success) {
       setToken(res.data.token);
       localStorage.setItem("token", res.data.token);
       navigate("/home");
     }
+    } catch (error) {
+      console.log("error: ", error)
+    }
+
   };
 
   const handleSignIn = () => {

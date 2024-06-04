@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import validator from 'validator';
 import { uploadOnCloud } from "../Utils/cloudinary.js";
 import fs from 'fs';
-import path from "path";
+
 
 const createToken = (userId) => {
   return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '1h' });

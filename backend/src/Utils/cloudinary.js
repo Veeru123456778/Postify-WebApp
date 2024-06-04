@@ -22,6 +22,6 @@ export const uploadOnCloud = (filePath) => {
 };
 
 
-export { uploadOnCloud };
+export default uploadOnCloud ;
 
 

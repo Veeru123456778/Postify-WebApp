@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable react/prop-types */
+import { useState } from 'react';
 
 const PasswordInput = ({ value, onChange }) => {
     const [showPassword, setShowPassword] = useState(false);
