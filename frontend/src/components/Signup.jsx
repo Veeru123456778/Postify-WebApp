@@ -49,7 +49,7 @@ const Signup = () => {
 
     try {
       const res = await ApiConnector("POST",url,data);
-
+      console.log("Response: ",res);
     if (res.data.success) {
       setToken(res.data.token);
       localStorage.setItem("token", res.data.token);
