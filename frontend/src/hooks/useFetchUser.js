@@ -12,8 +12,8 @@ const useFetchUser = (token, setUser) => {
         try {
           const res = await axios.get(
             `${backend_url}/api/user/userInfo`,
-            {
-              headers: { token },
+             {
+              headers: { 'Authorization': `Bearer ${token}` },
             }
           );
           if (res.data.success) {
@@ -28,7 +28,7 @@ const useFetchUser = (token, setUser) => {
       }
     };
     fetchUser();
-  }, [token, setUser]);
+  }, [token, setUser,backend_url]);
 
   return loading;
 };
