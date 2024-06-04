@@ -13,7 +13,7 @@ const useFetchUser = (token, setUser) => {
           const res = await axios.get(
             `${backend_url}/api/user/userInfo`,
              {
-              headers: { 'Authorization': `Bearer ${token}` },
+              headers: {token},
             }
           );
           if (res.data.success) {
