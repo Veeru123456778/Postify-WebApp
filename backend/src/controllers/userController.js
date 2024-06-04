@@ -2,7 +2,7 @@ import userModel from "../models/userModel.js";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
-import { uploadOnCloud } from "../utils/cloudinary.js";
+import { uploadOnCloud } from "../Utils/cloudinary.js";
 import fs from 'fs';
 import path from "path";
 
