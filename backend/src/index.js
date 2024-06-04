@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 
 
-index.use(
+app.use(
 	cors({
 		origin: '*',
 		methods: '*',
