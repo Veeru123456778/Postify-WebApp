@@ -33,7 +33,7 @@ const login_user = async (req, res) => {
 };
 
 const register_user = async (req, res) => {
-<<<<<<< HEAD
+
   const { email, password, name } = req.body;
   const profileLocalPath = req.file ? req.file.path : null;
 
@@ -41,70 +41,9 @@ const register_user = async (req, res) => {
     // Validate email
     if (!validator.isEmail(email)) {
       return res.status(400).json({ success: false, message: "Email is not valid" });
-=======
-    const { email, password, name } = req.body;
-    const profileLocalPath = req.file ? req.file.path : null;
-
-    // let absoluteFilePath = null;
-    // if(profilePicture){
-    //  absoluteFilePath = path.resolve(profilePicture);
-    // }
-
-    try {
-        // Validate email
-        if (!validator.isEmail(email)) {
-            return res.status(400).json({ success: false, message: "Email is not valid" });
-        }
-
+    }
+    
         // Check if user already exists
-        const UserExist = await userModel.findOne({ email });
-        if (UserExist) {
-            return res.status(409).json({ success: false, message: "User already exists" });
-        }
-
-        // Hash the password
-        const salt = await bcrypt.genSalt(10);
-        const hashed_password = await bcrypt.hash(password, salt);
- 
-    let cloudinaryResponse = null;
-    console.log(profileLocalPath);
-
-    if (profileLocalPath) {
-      console.log('Uploading file to Cloudinary:', profileLocalPath);
-      try {
-        cloudinaryResponse = await uploadOnCloud(profileLocalPath);
-        console.log('Cloudinary response:', cloudinaryResponse);
-        fs.unlinkSync(profileLocalPath); // Remove file after successful upload
-      } catch (error) {
-        console.error('Error uploading to Cloudinary:', error);
-        return res.status(500).json({ success: false, message: "Error uploading profile picture", error: error.message });
-      }
-    }
-
-
-        // Create new user
-        const newUser = new userModel({
-            email,
-            password: hashed_password,
-            name: name || null,
-            profile_picture: cloudinaryResponse?cloudinaryResponse.url : null
-        });
-
-        // Save the user to the database
-        const user = await newUser.save();
-
-        // Generate token
-        const token = createToken(user._id);
-
-        // Respond with success
-        res.status(201).json({ success: true, token });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: "Server Error" });
->>>>>>> b93f0a9fbce4724d9a712f3a7f04a5140ff5b54d
-    }
-
-    // Check if user already exists
     const userExist = await userModel.findOne({ email });
     if (userExist) {
       return res.status(409).json({ success: false, message: "User already exists" });
