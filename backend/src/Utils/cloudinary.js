@@ -20,8 +20,7 @@ export const uploadOnCloud = (filePath) => {
     });
   });
 };
-<<<<<<< HEAD
-=======
+
 
 export { uploadOnCloud };
 
