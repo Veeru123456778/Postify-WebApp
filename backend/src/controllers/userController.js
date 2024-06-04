@@ -36,12 +36,12 @@ catch(error){
 
 const register_user = async (req, res) => {
     const { email, password, name } = req.body;
-    const profilePicture = req.file ? req.file.path : null;
+    const profileLocalPath = req.file ? req.file.path : null;
 
-    let absoluteFilePath = null;
-    if(profilePicture){
-     absoluteFilePath = path.resolve(profilePicture);
-    }
+    // let absoluteFilePath = null;
+    // if(profilePicture){
+    //  absoluteFilePath = path.resolve(profilePicture);
+    // }
 
     try {
         // Validate email
@@ -58,20 +58,22 @@ const register_user = async (req, res) => {
         // Hash the password
         const salt = await bcrypt.genSalt(10);
         const hashed_password = await bcrypt.hash(password, salt);
+ 
+    let cloudinaryResponse = null;
+    console.log(profileLocalPath);
 
-        let cloudinaryResponse = null;
-        
-        if (absoluteFilePath) {
-            console.log('Uploading file to Cloudinary:', absoluteFilePath);
-            try {
-                cloudinaryResponse = await uploadOnCloud(absoluteFilePath);
-                console.log('Cloudinary response:', cloudinaryResponse);
-                fs.unlinkSync(absoluteFilePath);
-            } catch (error) {
-                console.error('Error uploading to Cloudinary:', error);
-                return res.status(500).json({ success: false, message: "Error uploading profile picture" });
-            }
-        }
+    if (profileLocalPath) {
+      console.log('Uploading file to Cloudinary:', profileLocalPath);
+      try {
+        cloudinaryResponse = await uploadOnCloud(profileLocalPath);
+        console.log('Cloudinary response:', cloudinaryResponse);
+        fs.unlinkSync(profileLocalPath); // Remove file after successful upload
+      } catch (error) {
+        console.error('Error uploading to Cloudinary:', error);
+        return res.status(500).json({ success: false, message: "Error uploading profile picture", error: error.message });
+      }
+    }
+
 
         // Create new user
         const newUser = new userModel({
