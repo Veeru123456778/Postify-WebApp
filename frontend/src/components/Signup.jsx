@@ -48,11 +48,7 @@ const Signup = () => {
     });
 
     try {
-      const res = await ApiConnector("POST",url,data,
-      {
-        "Content-Type": "multipart/form-data",
-      }
-    );
+      const res = await ApiConnector("POST",url,data);
 
     if (res.data.success) {
       setToken(res.data.token);
